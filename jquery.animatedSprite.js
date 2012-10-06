@@ -24,6 +24,8 @@
                         resetAtEnd: true
                     }, options);
 
+                    data.tickTime = Math.floor(1000/data.fps);
+
                     $(this).data('animatedSprite', data);
 
                 }
@@ -36,6 +38,7 @@
 
         play : function() {
             var $this = $(this);
+
             var data = $this.data('animatedSprite');
 
             if($this.hasClass("animating") === false) {
@@ -45,11 +48,11 @@
 
                 $this.addClass("animating");
 
-                var tickTime = Math.floor(1000/$(this).data('animatedSprite').fps);
+                //var tickTime = Math.floor(1000/$(this).data('animatedSprite').fps);
 
-                data.interval = setInterval(function() {
+                data.interval = setTimeout(function() {
                     $this.animatedSprite("nextFrame");
-                }, tickTime);
+                }, data.tickTime);
 
                 $(this).data('animatedSprite', data);
             }
@@ -57,31 +60,35 @@
 
         nextFrame : function() {
             var $this = $(this);
+
             var data = $this.data('animatedSprite');
 
             if(data.currentFrame < data.totalFrames) {
                 data.currentFrame++;
-                $this.data('animatedSprite', data);
                 $this.animatedSprite("renderCurrentFrame");
+                data.interval = setTimeout(function() {
+                    $this.animatedSprite("nextFrame");
+                }, data.tickTime);
             } else {
                 if(data.loop == data.currentLoop) {
-                    clearInterval(data.interval);
+                    //clearInterval(data.interval);
                     $this.removeClass("animating")
-                    $this.data('animatedSprite', data);
 
                     if(data.resetAtEnd === true) {
                         data.currentFrame = 1;
-                        $this.data('animatedSprite', data);
                         $this.animatedSprite("renderCurrentFrame");
                     }
                 } else {
                     data.currentLoop++;
                     data.currentFrame = 1;
-                    $this.data('animatedSprite', data);
                     $this.animatedSprite("renderCurrentFrame");
+                    data.interval = setTimeout(function() {
+                        $this.animatedSprite("nextFrame");
+                    }, data.tickTime);
                 }
             }
 
+            $this.data('animatedSprite', data);
         },
 
         renderCurrentFrame : function() {

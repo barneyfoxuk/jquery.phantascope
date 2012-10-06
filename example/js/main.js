@@ -3,8 +3,8 @@ $(document).ready(function() {
     $('#sprite').animatedSprite({
         fps: 6,
         totalFrames: 6,
-        loop: 1,
-        autoStart: false,
+        loop: 1000,
+        autoStart: true,
         resetAtEnd: true
     });
 
