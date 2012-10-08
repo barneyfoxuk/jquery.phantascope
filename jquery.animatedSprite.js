@@ -4,6 +4,29 @@
     /*
      *  Private Methods
      */
+     var calculateFrameIndex = function(layout, point) {
+        var index = 0,
+            col = point[0],
+            row = point[1];
+
+        for(var i = 0; i < row-1; i++) {
+            index += layout[i];
+        }
+
+        index += col;
+        return index;
+     };
+
+     var isPlayingForward = function(layout, currentPoint, endPoint) {
+        var currentPointIndex = calculateFrameIndex(layout, currentPoint);
+        var endPointIndex = calculateFrameIndex(layout, endPoint);
+
+        if(currentPointIndex < endPointIndex) {
+            return true;
+        } else {
+            return false;
+        }
+     };
 
      var onNextFrame = function($this) {
 
@@ -43,25 +66,41 @@
                 renderCurrentFrame($this);
             }
         }
-        //is end of row
-        else if(currentColumn == data.layout[currentRow-1]) {
-            //is last row
-            if(currentRow == data.layout.length) {
-            }
-            //is not last row
-            else {
-                //move to next row
-                data.currentPoint = [1, currentRow+1];
-                renderCurrentFrame($this);
-                nextFrame($this);
-            }
-        }
-        //is not end of row
         else {
-            data.currentPoint = [currentColumn+1, currentRow];
-            renderCurrentFrame($this);
-            nextFrame($this);
+            var playingForward = isPlayingForward(data.layout, data.currentPoint, data.endPoint);
+            var newRow;
+
+            if(playingForward) {
+                //is end of row
+                if(currentColumn == data.layout[currentRow-1]) {
+                    //move to next row
+                    data.currentPoint = [1, currentRow+1];
+                    renderCurrentFrame($this);
+                    nextFrame($this);
+                } else {
+                    data.currentPoint = [currentColumn+1, currentRow];
+                    renderCurrentFrame($this);
+                    nextFrame($this);
+                }
+            } else {
+                //is start of row
+                if(currentColumn == 1) {
+                    //move to prev row
+                    newRow = currentRow-1;
+                    data.currentPoint = [data.layout[newRow], newRow];
+                    renderCurrentFrame($this);
+                    nextFrame($this);
+                } else {
+                    data.currentPoint = [currentColumn-1, currentRow];
+                    renderCurrentFrame($this);
+                    nextFrame($this);
+                }
+            }
+
+
         }
+
+        console.log("data.currentPoint", data.currentPoint);
 
         $this.data('animatedSprite', data);
     };
