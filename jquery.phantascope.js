@@ -30,7 +30,7 @@
 
      var onNextFrame = function($this) {
 
-        var data = $this.data('animatedSprite'),
+        var data = $this.data('phantascope'),
             currentColumn = data.currentPoint[0],
             currentRow = data.currentPoint[1],
             startPoint = data.startPoint,
@@ -47,13 +47,13 @@
 
             //check if we need to reverse
             if(data.reverseAtEnd) {
-                $this.animatedSprite("play", endPoint, startPoint);
+                $this.phantascope("play", endPoint, startPoint);
             }
 
             //check if we need to loop
             if(data.loop === "*" || data.currentLoopIndex < data.loop) {
                 data.currentLoopIndex++;
-                $this.animatedSprite("play");
+                $this.phantascope("play");
             }
 
             if(data.currentLoopIndex == data.loop && !data.reverseAtEnd) {
@@ -102,19 +102,19 @@
 
         console.log("data.currentPoint", data.currentPoint);
 
-        $this.data('animatedSprite', data);
+        $this.data('phantascope', data);
     };
 
 
 
     var renderCurrentFrame = function($this) {
-        var data = $this.data('animatedSprite');
+        var data = $this.data('phantascope');
         $this.css("backgroundPosition", "-"+((data.currentPoint[0]-1)*$this.outerWidth())+"px "+((data.currentPoint[1]-1)*-$this.outerHeight())+"px");
     };
 
 
     var nextFrame = function($this) {
-        var data = $this.data('animatedSprite');
+        var data = $this.data('phantascope');
 
         data.interval = setTimeout(function() {
             onNextFrame($this);
@@ -133,7 +133,7 @@
             return this.each(function(){
 
                 var $this = $(this),
-                data = $this.data('animatedSprite')
+                data = $this.data('phantascope')
 
                 // If the plugin hasn't been initialized yet
                 if ( !data ) {
@@ -158,12 +158,12 @@
                     //data.tickTime = Math.floor(1000/data.fps);
                     data.currentLoopIndex = 1;
 
-                    $(this).data('animatedSprite', data);
+                    $(this).data('phantascope', data);
 
                 }
 
                 if(data.autoStart === true) {
-                    $this.animatedSprite("play");
+                    $this.phantascope("play");
                 }
             });
         },
@@ -171,36 +171,36 @@
         play : function(options) {
 
             var $this = $(this);
-            var data = $this.data('animatedSprite');
+            var data = $this.data('phantascope');
 
             if(options)
                 data = $.extend(data, options);
 
             data.currentPoint = data.startPoint;
 
-            $(this).data('animatedSprite', data);
+            $(this).data('phantascope', data);
 
             if($this.hasClass("animating") === false) {
 
                 $this.addClass("animating");
 
-                //var tickTime = Math.floor(1000/$(this).data('animatedSprite').fps);
+                //var tickTime = Math.floor(1000/$(this).data('phantascope').fps);
 
                 nextFrame($this);
 
-                $(this).data('animatedSprite', data);
+                $(this).data('phantascope', data);
             }
         },
 
         update : function(options) {
 
             var $this = $(this);
-            var data = $this.data('animatedSprite');
+            var data = $this.data('phantascope');
 
             if(options)
                 data = $.extend(data, options);
 
-             $(this).data('animatedSprite', data);
+             $(this).data('phantascope', data);
 
         },
 
@@ -209,7 +209,7 @@
             return this.each(function(){
 
                 var $this = $(this);
-                $this.removeData('animatedSprite');
+                $this.removeData('phantascope');
 
             });
 
@@ -219,14 +219,14 @@
 
 
 
-    $.fn.animatedSprite = function( method ) {
+    $.fn.phantascope = function( method ) {
 
         if ( publicMethods[method] ) {
             return publicMethods[method].apply( this, Array.prototype.slice.call( arguments, 1 ));
         } else if ( typeof method === 'object' || ! method ) {
             return publicMethods.init.apply( this, arguments );
         } else {
-            $.error( 'Method ' +  method + ' does not exist on jQuery.animatedSprite' );
+            $.error( 'Method ' +  method + ' does not exist on jQuery.phantascope' );
         }
 
     };

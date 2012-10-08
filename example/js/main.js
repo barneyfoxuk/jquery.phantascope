@@ -9,7 +9,7 @@ $(document).ready(function() {
 
     $.each($('.sprite'), function(i,n) {
         if(i%2 == 0) {
-           $(n).animatedSprite({
+           $(n).phantascope({
                 fps: Math.floor(Math.random()*100)+30,
                 startPoint: [8,4],
                 endPoint: [1,1],
@@ -19,7 +19,7 @@ $(document).ready(function() {
                 resetAtEnd: true
             });
        } else {
-            $(n).animatedSprite({
+            $(n).phantascope({
                 fps: Math.floor(Math.random()*100)+30,
                 startPoint: [1,1],
                 endPoint: [8,4],
