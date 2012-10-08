@@ -93,7 +93,7 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-
+/*
 #sprite {
     position: absolute;
     bottom: 0;
@@ -102,7 +102,19 @@ textarea {
     height: 75px;
     background: url(../img/sprite.gif) no-repeat 0px 0px;
 }
+*/
 
+/* centered */
+#sprite {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 52px;
+    height: 76px;
+    margin-left: -26px;
+    margin-top: -37px;
+    background: url(../img/sprite.gif) no-repeat 0px 0px;
+}
 
 
 
