@@ -1,7 +1,7 @@
 {
-    "name": "jquery.animatedSprite",
+    "name": "jquery.phantascope",
     "version": "1.0.0",
-    "main": "./jquery.animatedSprite.js",
+    "main": "./jquery.phantascope.js",
     "dependencies": {
         "jquery": "1.7.x"
     }

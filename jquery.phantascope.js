@@ -47,7 +47,15 @@
 
             //check if we need to reverse
             if(data.reverseAtEnd) {
-                $this.phantascope("play", endPoint, startPoint);
+                //console.log("reverseAtEnd");
+                $this.phantascope("play", {
+                    startPoint: data.currentPoint,
+                    endPoint: startPoint,
+                    currentLoopIndex: 1,
+                    reverseAtEnd: false
+                });
+
+                return false;
             }
 
             //check if we need to loop
@@ -100,7 +108,7 @@
 
         }
 
-        console.log("data.currentPoint", data.currentPoint);
+        //console.log("data.currentPoint", data.currentPoint);
 
         $this.data('phantascope', data);
     };
@@ -175,6 +183,8 @@
 
             if(options)
                 data = $.extend(data, options);
+
+            console.log(data);
 
             data.currentPoint = data.startPoint;
 
