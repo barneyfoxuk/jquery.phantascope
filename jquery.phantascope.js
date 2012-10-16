@@ -71,13 +71,9 @@
                 if(currentColumn == data.layout[currentRow-1]) {
                     //move to next row
                     data.currentPoint = [1, currentRow+1];
-                    renderCurrentFrame($this);
-                    nextFrame($this);
                 } else {
                     //move to next frame
                     data.currentPoint = [currentColumn+1, currentRow];
-                    renderCurrentFrame($this);
-                    nextFrame($this);
                 }
             } else {
                 //is start of row
@@ -85,17 +81,14 @@
                     //move to prev row
                     newRow = currentRow-1;
                     data.currentPoint = [data.layout[newRow], newRow];
-                    renderCurrentFrame($this);
-                    nextFrame($this);
                 } else {
                     //move to next frame
                     data.currentPoint = [currentColumn-1, currentRow];
-                    renderCurrentFrame($this);
-                    nextFrame($this);
                 }
             }
 
-
+            renderCurrentFrame($this);
+            nextFrame($this);
         }
 
         //console.log("data.currentPoint", data.currentPoint);

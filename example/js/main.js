@@ -39,10 +39,9 @@ $(document).ready(function() {
         layout: [8, 8, 8, 8],
         animationPoints: [
             [1,1],
-            [8,4],
-            [1,1]
+            [8,4]
         ],
-        loop: 2,
+        loop: "*",
         autoStart: true
     });
 
