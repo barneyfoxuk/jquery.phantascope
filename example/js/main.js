@@ -36,12 +36,14 @@ $(document).ready(function() {
 
     $('.sprite').phantascope({
         fps: 100,
-        startPoint: [1,1],
-        endPoint: [8,4],
         layout: [8, 8, 8, 8],
-        loop: 10,
-        autoStart: true,
-        reverseAtEnd: true
+        animationPoints: [
+            [1,1],
+            [8,4],
+            [1,1]
+        ],
+        loop: 2,
+        autoStart: true
     });
 
 

@@ -1,6 +1,5 @@
 (function( $ ){
 
-
     /*
      *  Private Methods
      */
@@ -33,36 +32,38 @@
         var data = $this.data('phantascope'),
             currentColumn = data.currentPoint[0],
             currentRow = data.currentPoint[1],
-            startPoint = data.startPoint,
-            endPoint = data.endPoint;
-
-
+            nextAnimationPoint = data.animationPoints[data.animationPointIndex+1];
+            //console.log("nextAnimationPoint", nextAnimationPoint);
         //console.log("data.currentPoint", data.currentPoint, "data.endPoint", data.endPoint);
 
+        //if we've hit the next animation point
+        if(currentColumn == nextAnimationPoint[0] && currentRow == nextAnimationPoint[1]) {
+            //if there's no more animation points its the end of the animation
+            if(data.animationPointIndex == (data.animationPoints.length-2)) {
+                $this.removeClass("animating");
 
-        //end of animation
-        if(currentColumn == data.endPoint[0] && currentRow == data.endPoint[1]) {
+                //check if we need to loop
+                if(data.loop === "*" || data.currentLoopIndex < data.loop) {
+                    data.currentLoopIndex++;
+                    $this.phantascope("play");
+                } else {
+                    data.onComplete();
+                }
 
-            $this.removeClass("animating");
+                //check if we need to reset
+                if(data.resetAtEnd) {
+                    data.currentPoint = data.animationPoints[0];
+                    renderCurrentFrame($this);
+                }
 
-            //check if we need to loop
-            if(data.loop === "*" || data.currentLoopIndex < data.loop) {
-                data.currentLoopIndex++;
-                $this.phantascope("play");
-            }
-
-            if(data.currentLoopIndex == data.loop && !data.reverseAtEnd) {
-                data.onComplete();
-            }
-
-            //check if we need to reset
-            if(data.resetAtEnd) {
-                data.currentPoint = startPoint;
-                renderCurrentFrame($this);
+            } else {
+                data.animationPointIndex++;
+                data.currentPoint = data.animationPoints[data.animationPointIndex];
+                nextFrame($this);
             }
         }
         else {
-            var playingForward = isPlayingForward(data.layout, data.currentPoint, data.endPoint);
+            var playingForward = isPlayingForward(data.layout, data.currentPoint, nextAnimationPoint);
             var newRow;
 
             if(playingForward) {
@@ -73,6 +74,7 @@
                     renderCurrentFrame($this);
                     nextFrame($this);
                 } else {
+                    //move to next frame
                     data.currentPoint = [currentColumn+1, currentRow];
                     renderCurrentFrame($this);
                     nextFrame($this);
@@ -86,6 +88,7 @@
                     renderCurrentFrame($this);
                     nextFrame($this);
                 } else {
+                    //move to next frame
                     data.currentPoint = [currentColumn-1, currentRow];
                     renderCurrentFrame($this);
                     nextFrame($this);
@@ -133,18 +136,18 @@
                 // If the plugin hasn't been initialized yet
                 if ( !data ) {
 
-                    /*
-                         Do more setup stuff here
-                    */
+                    //set up some defaults
                     var data = $.extend( {
                         target : $this,
                         fps: 24,
-                        autoStart: true,
                         layout: [6],
-                        startPoint: [1,1],
-                        endPoint: [1,6],
+                        animationPoints: [
+                            [1,1],
+                            [1,6]
+                        ],
+                        autoStart: true,
                         repeat: 1,
-                        resetAtEnd: true,
+                        resetAtEnd: false,
                         onComplete: function() {  }
 
                     }, options);
@@ -170,9 +173,8 @@
             if(options)
                 data = $.extend(data, options);
 
-            //console.log(data);
-
-            data.currentPoint = data.startPoint;
+            data.animationPointIndex = 0;
+            data.currentPoint = data.animationPoints[0];
 
             $(this).data('phantascope', data);
 
@@ -201,7 +203,7 @@
         },
 
         gotoFrame: function(point) {
-            console.log("gotoFrame");
+
             var $this = $(this);
             var data = $this.data('phantascope');
             data.currentPoint = point;
