@@ -1,24 +1,14 @@
 $(document).ready(function() {
 
-    var winWidth = $(window).width(),
-        winHeight = $(window).height();
+    var winWidth = $(window).width()-80,
+        winHeight = $(window).height()-80;
 
-    // for(var i = 0; i < 10; i++) {
-    //     $('body').append('<div class="sprite" style="left: '+Math.floor(Math.random()*winWidth)+'px; top: '+Math.floor(Math.random()*winHeight)+'px;"></div>');
-    // };
-
-    $('.sprite').phantascope({
-        fps: 30,
-        startPoint: [1,1],
-        endPoint: [8,4],
-        layout: [8, 8, 8, 8],
-        loop: "2",
-        autoStart: true,
-        reverseAtEnd: true
-    });
+    for(var i = 0; i < 10; i++) {
+        $('body').append('<div class="sprite" style="left: '+Math.floor(Math.random()*winWidth)+'px; top: '+Math.floor(Math.random()*winHeight)+'px;"></div>');
+    }
 
     // $.each($('.sprite'), function(i,n) {
-    //     if(i%2 == 0) {
+    //     if(i%2 === 0) {
     //        $(n).phantascope({
     //             fps: Math.floor(Math.random()*100)+30,
     //             startPoint: [8,4],
@@ -43,6 +33,16 @@ $(document).ready(function() {
     // });
 
     //$('#sprite').animatedSprite("play", {startPoint: [1,2], endPoint: [6,2]});
+
+    $('.sprite').phantascope({
+        fps: 100,
+        startPoint: [1,1],
+        endPoint: [8,4],
+        layout: [8, 8, 8, 8],
+        loop: 10,
+        autoStart: true,
+        reverseAtEnd: true
+    });
 
 
 

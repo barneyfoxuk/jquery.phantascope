@@ -45,19 +45,6 @@
 
             $this.removeClass("animating");
 
-            //check if we need to reverse
-            if(data.reverseAtEnd) {
-                //console.log("reverseAtEnd");
-                $this.phantascope("play", {
-                    startPoint: data.currentPoint,
-                    endPoint: startPoint,
-                    currentLoopIndex: 1,
-                    reverseAtEnd: false
-                });
-
-                return false;
-            }
-
             //check if we need to loop
             if(data.loop === "*" || data.currentLoopIndex < data.loop) {
                 data.currentLoopIndex++;
@@ -136,7 +123,7 @@
 
     var publicMethods = {
 
-        init : function( options ) {
+        init: function( options ) {
 
             return this.each(function(){
 
@@ -151,13 +138,12 @@
                     */
                     var data = $.extend( {
                         target : $this,
-                        fps: 10,
+                        fps: 24,
                         autoStart: true,
-                        layout: [6,6,2],
+                        layout: [6],
                         startPoint: [1,1],
-                        endPoint: [10,6],
-                        repeat: 3,
-                        reverseAtEnd: false,
+                        endPoint: [1,6],
+                        repeat: 1,
                         resetAtEnd: true,
                         onComplete: function() {  }
 
@@ -176,7 +162,7 @@
             });
         },
 
-        play : function(options) {
+        play: function(options) {
 
             var $this = $(this);
             var data = $this.data('phantascope');
@@ -184,7 +170,7 @@
             if(options)
                 data = $.extend(data, options);
 
-            console.log(data);
+            //console.log(data);
 
             data.currentPoint = data.startPoint;
 
@@ -202,7 +188,7 @@
             }
         },
 
-        update : function(options) {
+        update: function(options) {
 
             var $this = $(this);
             var data = $this.data('phantascope');
@@ -214,7 +200,17 @@
 
         },
 
-        destroy : function( ) {
+        gotoFrame: function(point) {
+            console.log("gotoFrame");
+            var $this = $(this);
+            var data = $this.data('phantascope');
+            data.currentPoint = point;
+            $(this).data('phantascope', data);
+            renderCurrentFrame($this);
+
+        },
+
+        destroy: function( ) {
 
             return this.each(function(){
 
