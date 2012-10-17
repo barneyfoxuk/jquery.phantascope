@@ -45,7 +45,7 @@
                 //check if we need to loop
                 if(data.loop === "*" || data.currentLoopIndex < data.loop) {
                     data.currentLoopIndex++;
-                    $this.phantascope("play");
+                    $this.phantascope("play", {currentPoint: data.animationPoints[0], animationPointIndex: 0});
                 } else {
                     data.onComplete();
                 }
@@ -148,6 +148,9 @@
                     //data.tickTime = Math.floor(1000/data.fps);
                     data.currentLoopIndex = 1;
 
+                    data.animationPointIndex = 0;
+                    data.currentPoint = data.animationPoints[0];
+
                     $(this).data('phantascope', data);
 
                 }
@@ -166,21 +169,14 @@
             if(options)
                 data = $.extend(data, options);
 
-            data.animationPointIndex = 0;
-            data.currentPoint = data.animationPoints[0];
+            if(data.interval)
+                clearInterval(data.interval);
+
+            $this.addClass("animating");
+
+            nextFrame($this);
 
             $(this).data('phantascope', data);
-
-            if($this.hasClass("animating") === false) {
-
-                $this.addClass("animating");
-
-                //var tickTime = Math.floor(1000/$(this).data('phantascope').fps);
-
-                nextFrame($this);
-
-                $(this).data('phantascope', data);
-            }
         },
 
         update: function(options) {
@@ -200,6 +196,26 @@
             var $this = $(this);
             var data = $this.data('phantascope');
             data.currentPoint = point;
+            $(this).data('phantascope', data);
+            renderCurrentFrame($this);
+
+        },
+
+        pause: function() {
+
+            var $this = $(this);
+            var data = $this.data('phantascope');
+            clearInterval(data.interval);
+
+        },
+
+        stop: function() {
+
+            var $this = $(this);
+            var data = $this.data('phantascope');
+            clearInterval(data.interval);
+            data.animationPointIndex = 0;
+            data.currentPoint = data.animationPoints[0];
             $(this).data('phantascope', data);
             renderCurrentFrame($this);
 
