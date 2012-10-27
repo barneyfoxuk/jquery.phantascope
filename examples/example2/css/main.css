@@ -105,7 +105,7 @@ textarea {
 */
 
 body{
-    background-color: white;
+    background-color: #0000ff;
 }
 
 /* centered */
@@ -113,11 +113,11 @@ body{
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 43px;
-    height: 51px;
-    margin-left: -26px;
-    margin-top: -37px;
-    background: url(../img/runner.gif) no-repeat 0px 0px;
+    width: 240px;
+    height: 296px;
+    margin-left: -120px;
+    margin-top: -148px;
+    background: url(../img/runner.png) no-repeat 0px 0px;
 }
 
 

@@ -1,4 +1,7 @@
-jQuery-animatedSprite
-=====================
+jquery.phantascope
+==================
 
-jQuery plugin for animating sprites
+A jQuery plugin for animating sprites.
+
+
+## Usage
