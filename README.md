@@ -17,14 +17,41 @@ A jQuery plugin for animating sprites.
 <script src="jquery.phantascope.js"></script>
 ```
 
-3) Call the Phantascope function in your document ready function, parsing in the required settings for your animation
+3) Call the Phantascope function in your document ready function, parsing in the required options for your animation
 
 ```javascript
 $(document).ready(function() {
   $('.sprite').Phantascope({
-    fps: 24
+    fps: 24,
+    layout: [6],
+    animationPoints: [
+        [1,1],
+        [1,6]
+    ],
+    autoStart: true,
+    repeat: 1,
+    resetAtEnd: false,
+    onComplete: function() {  }
   });
 });
 ```
 
-4) Watch your animations play!
+4) Enjoy super sweet frame based animations on you webpage!
+
+
+## Options
+
+<table>
+    <tr>
+        <th>Option</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td><strong>fps</strong></td>
+        <td>Int</td>
+        <td>24</td>
+        <td>How many frames per second the animation should run at</td>
+    </tr>
+</table>
