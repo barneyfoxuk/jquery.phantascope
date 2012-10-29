@@ -87,8 +87,7 @@ $(document).ready(function() {
 ## Methods
 
 Method can be called using the following syntax: $('.sprite').spritely("methodName", params).
-
-For example: $('.sprite').spritely("play", {fps: 30, animationPoints: [[6,1],[1,1]]});
+An example of this would be: $('.sprite').spritely("play", {fps: 30, animationPoints: [[6,1],[1,1]]});
 
 <table>
     <tr>
@@ -97,32 +96,32 @@ For example: $('.sprite').spritely("play", {fps: 30, animationPoints: [[6,1],[1,
         <th>Description</th>
     </tr>
     <tr>
-        <td>play</td>
+        <td><strong>play</strong></td>
         <td>options (object)</td>
         <td>Start playing the animation from it's current point.  You can also update any of the settings of that animation with the options above.</td>
     </tr>
     <tr>
-        <td>update</td>
+        <td><strong>update</strong></td>
         <td>options (object)</td>
         <td>Update any of the settings of that animation with the options above.</td>
     </tr>
     <tr>
-        <td>gotoFrame</td>
+        <td><strong>gotoFrame</strong></td>
         <td>point (array)</td>
         <td>Move to the specified frame</td>
     </tr>
     <tr>
-        <td>pause</td>
+        <td><strong>pause</strong></td>
         <td><em>none</em></td>
         <td>Pause the animation</td>
     </tr>
     <tr>
-        <td>stop</td>
+        <td><strong>stop</strong></td>
         <td><em>none</em></td>
         <td>Stop the animation</td>
     </tr>
     <tr>
-        <td>destroy</td>
+        <td><strong>destroy</strong></td>
         <td><em>none</em></td>
         <td>Remove all plugin functionality from the element</td>
     </tr>
