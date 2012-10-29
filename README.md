@@ -22,16 +22,7 @@ A jQuery plugin for animating sprites.
 ```javascript
 $(document).ready(function() {
   $('.sprite').Phantascope({
-    fps: 24,
-    layout: [6],
-    animationPoints: [
-        [1,1],
-        [1,6]
-    ],
-    autoStart: true,
-    repeat: 1,
-    resetAtEnd: false,
-    onComplete: function() {  }
+    optionName: value
   });
 });
 ```
@@ -52,6 +43,18 @@ $(document).ready(function() {
         <td><strong>fps</strong></td>
         <td>Int</td>
         <td>24</td>
-        <td>How many frames per second the animation should run at</td>
+        <td>The number of frames per second the animation should run at</td>
+    </tr>
+    <tr>
+        <td><strong>layout</strong></td>
+        <td>Array</td>
+        <td>[6]</td>
+        <td>An array containing the number of frames on each row of the sprite.  The default describes a sprite containing one row of six frames.</td>
+    </tr>
+    <tr>
+        <td><strong>animationPoints</strong></td>
+        <td>Array</td>
+        <td>[[1,1], [1,6]]</td>
+        <td>The points through which the animation will play.  Each point is an array, the first value refering to the column, the second to the row.<br/><br/>This default value will play from the first frame to last frame (based upon the default layout of six frames on one row).  You can use as many points as you want, and the animation can play either forward or backwards.<br/><br/>For example. to update the current animation to reverse and play back to the start you would parse these settings: [[1,1], [1,6], [1,1]]</td>
     </tr>
 </table>
