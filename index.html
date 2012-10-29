@@ -48,16 +48,7 @@
 
 <div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="nx">$</span><span class="p">(</span><span class="s1">'.sprite'</span><span class="p">).</span><span class="nx">Phantascope</span><span class="p">({</span>
-    <span class="nx">fps</span><span class="o">:</span> <span class="mi">24</span><span class="p">,</span>
-    <span class="nx">layout</span><span class="o">:</span> <span class="p">[</span><span class="mi">6</span><span class="p">],</span>
-    <span class="nx">animationPoints</span><span class="o">:</span> <span class="p">[</span>
-        <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
-    <span class="p">],</span>
-    <span class="nx">autoStart</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="nx">repeat</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="nx">resetAtEnd</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="nx">onComplete</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>  <span class="p">}</span>
+    <span class="nx">optionName</span><span class="o">:</span> <span class="nx">value</span>
   <span class="p">});</span>
 <span class="p">});</span>
 </pre></div>
@@ -77,7 +68,43 @@
 <td><strong>fps</strong></td>
         <td>Int</td>
         <td>24</td>
-        <td>How many frames per second the animation should run at</td>
+        <td>The number of frames per second the animation should run at.</td>
+    </tr>
+<tr>
+<td><strong>layout</strong></td>
+        <td>Array</td>
+        <td>[6]</td>
+        <td>An array containing the number of frames on each row of the sprite.  The default describes a sprite containing one row of six frames.</td>
+    </tr>
+<tr>
+<td><strong>animationPoints</strong></td>
+        <td>Array</td>
+        <td>[<br>  [1,1],<br>  [1,6]<br>]</td>
+        <td>The points through which the animation will play.  Each point is an array, the first value refering to the column, the second to the row.<br><br>This default value will play from the first frame to last frame (based upon the default layout of six frames on one row).  You can use as many points as you want, and the animation can play either forward or backwards.<br><br>For example. to update the current animation to reverse and play back to the start you would parse these settings: [[1,1], [1,6], [1,1]].</td>
+    </tr>
+<tr>
+<td><strong>loop</strong></td>
+        <td>Int/String</td>
+        <td>1</td>
+        <td>Number of times the animation should loop.  For an infinite loop use the string "*".</td>
+    </tr>
+<tr>
+<td><strong>autoStart</strong></td>
+        <td>Boolean</td>
+        <td>true</td>
+        <td>Whether to play the animation upon initialisation.</td>
+    </tr>
+<tr>
+<td><strong>resetAtEnd</strong></td>
+        <td>Boolean</td>
+        <td>false</td>
+        <td>When complete reset the sprite to the starting frame.</td>
+    </tr>
+<tr>
+<td><strong>onComplete</strong></td>
+        <td>Function</td>
+        <td>null</td>
+        <td>Callback fired when the animation is complete.</td>
     </tr>
 </table>
       </section>
