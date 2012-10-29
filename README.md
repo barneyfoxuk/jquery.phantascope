@@ -1,5 +1,5 @@
-jQuery.phantascope
-==================
+Phantascope
+===========
 
 A jQuery plugin for animating sprites.
 
@@ -21,7 +21,7 @@ A jQuery plugin for animating sprites.
 
 ```javascript
 $(document).ready(function() {
-  $('.sprite').Phantascope({
+  $('.sprite').phantascope({
     optionName: value
   });
 });
@@ -82,3 +82,49 @@ $(document).ready(function() {
         <td>Callback fired when the animation is complete.</td>
     </tr>
 </table>
+
+
+## Methods
+
+Method can be called using the following syntax: $('.sprite').spritely("methodName", params).
+
+For example: $('.sprite').spritely("play", {fps: 30, animationPoints: [[6,1],[1,1]]});
+
+<table>
+    <tr>
+        <th>Method</th>
+        <th>Parameters</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>play</td>
+        <td>options (object)</td>
+        <td>Start playing the animation from it's current point.  You can also update any of the settings of that animation with the options above.</td>
+    </tr>
+    <tr>
+        <td>update</td>
+        <td>options (object)</td>
+        <td>Update any of the settings of that animation with the options above.</td>
+    </tr>
+    <tr>
+        <td>gotoFrame</td>
+        <td>point (array)</td>
+        <td>Move to the specified frame</td>
+    </tr>
+    <tr>
+        <td>pause</td>
+        <td><em>none</em></td>
+        <td>Pause the animation</td>
+    </tr>
+    <tr>
+        <td>stop</td>
+        <td><em>none</em></td>
+        <td>Stop the animation</td>
+    </tr>
+    <tr>
+        <td>destroy</td>
+        <td><em>none</em></td>
+        <td>Remove all plugin functionality from the element</td>
+    </tr>
+</table>
+
