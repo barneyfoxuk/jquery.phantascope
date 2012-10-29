@@ -47,7 +47,8 @@
                     data.currentLoopIndex++;
                     $this.phantascope("play", {currentPoint: data.animationPoints[0], animationPointIndex: 0});
                 } else {
-                    data.onComplete();
+                    if(data.onComplete)
+                        data.onComplete();
                 }
 
                 //check if we need to reset
@@ -138,10 +139,10 @@
                             [1,1],
                             [1,6]
                         ],
+                        loop: 1,
                         autoStart: true,
-                        repeat: 1,
                         resetAtEnd: false,
-                        onComplete: function() {  }
+                        onComplete: null
 
                     }, options);
 

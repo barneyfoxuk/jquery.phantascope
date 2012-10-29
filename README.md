@@ -43,7 +43,7 @@ $(document).ready(function() {
         <td><strong>fps</strong></td>
         <td>Int</td>
         <td>24</td>
-        <td>The number of frames per second the animation should run at</td>
+        <td>The number of frames per second the animation should run at.</td>
     </tr>
     <tr>
         <td><strong>layout</strong></td>
@@ -55,6 +55,30 @@ $(document).ready(function() {
         <td><strong>animationPoints</strong></td>
         <td>Array</td>
         <td>[<br/>&nbsp;&nbsp;[1,1],<br />&nbsp;&nbsp;[1,6]<br/>]</td>
-        <td>The points through which the animation will play.  Each point is an array, the first value refering to the column, the second to the row.<br/><br/>This default value will play from the first frame to last frame (based upon the default layout of six frames on one row).  You can use as many points as you want, and the animation can play either forward or backwards.<br/><br/>For example. to update the current animation to reverse and play back to the start you would parse these settings: [[1,1], [1,6], [1,1]]</td>
+        <td>The points through which the animation will play.  Each point is an array, the first value refering to the column, the second to the row.<br/><br/>This default value will play from the first frame to last frame (based upon the default layout of six frames on one row).  You can use as many points as you want, and the animation can play either forward or backwards.<br/><br/>For example. to update the current animation to reverse and play back to the start you would parse these settings: [[1,1], [1,6], [1,1]].</td>
+    </tr>
+    <tr>
+        <td><strong>loop</strong></td>
+        <td>Int/String</td>
+        <td>1</td>
+        <td>Number of times the animation should loop.  For an infinite loop use the string "*".</td>
+    </tr>
+    <tr>
+        <td><strong>autoStart</strong></td>
+        <td>Boolean</td>
+        <td>true</td>
+        <td>Whether to play the animation upon initialisation.</td>
+    </tr>
+    <tr>
+        <td><strong>resetAtEnd</strong></td>
+        <td>Boolean</td>
+        <td>false</td>
+        <td>When complete reset the sprite to the starting frame.</td>
+    </tr>
+    <tr>
+        <td><strong>onComplete</strong></td>
+        <td>Function</td>
+        <td>null</td>
+        <td>Callback fired when the animation is complete.</td>
     </tr>
 </table>
