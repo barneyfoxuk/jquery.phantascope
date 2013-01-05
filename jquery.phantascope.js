@@ -37,8 +37,14 @@
             currentRow = data.currentPoint[1],
             nextAnimationPoint = data.animationPoints[data.animationPointIndex+1];
 
+        //check there is a next point - if not end the animation
+        if(!nextAnimationPoint) {
+            $this.removeClass("animating");
+            if(data.onComplete)
+                data.onComplete();
+        }
         //if we've hit the next animation point
-        if(currentColumn == nextAnimationPoint[0] && currentRow == nextAnimationPoint[1]) {
+        else if(currentColumn == nextAnimationPoint[0] && currentRow == nextAnimationPoint[1]) {
             //if there's no more animation points its the end of the animation
             if(data.animationPointIndex == (data.animationPoints.length-2)) {
                 $this.removeClass("animating");
