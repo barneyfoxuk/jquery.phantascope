@@ -27,14 +27,15 @@
         }
      };
 
+     /*
+      * Main bit of functionaility for the plugin.  Could do with some refactoring!
+      */
      var onNextFrame = function($this) {
 
         var data = $this.data('phantascope'),
             currentColumn = data.currentPoint[0],
             currentRow = data.currentPoint[1],
             nextAnimationPoint = data.animationPoints[data.animationPointIndex+1];
-            //console.log("nextAnimationPoint", nextAnimationPoint);
-        //console.log("data.currentPoint", data.currentPoint, "data.endPoint", data.endPoint);
 
         //if we've hit the next animation point
         if(currentColumn == nextAnimationPoint[0] && currentRow == nextAnimationPoint[1]) {
@@ -45,7 +46,9 @@
                 //check if we need to loop
                 if(data.loop === "*" || data.currentLoopIndex < data.loop) {
                     data.currentLoopIndex++;
-                    $this.phantascope("play", {currentPoint: data.animationPoints[0], animationPointIndex: 0});
+                    $this.data('phantascope', data);
+                    $this.phantascope("play", {animationPoints: data.animationPoints, animationPointIndex: 0});
+
                 } else {
                     if(data.onComplete)
                         data.onComplete();
@@ -54,12 +57,14 @@
                 //check if we need to reset
                 if(data.resetAtEnd) {
                     data.currentPoint = data.animationPoints[0];
+                    $this.data('phantascope', data);
                     renderCurrentFrame($this);
                 }
 
             } else {
                 data.animationPointIndex++;
                 data.currentPoint = data.animationPoints[data.animationPointIndex];
+                $this.data('phantascope', data);
                 nextFrame($this);
             }
         }
@@ -88,13 +93,14 @@
                 }
             }
 
+            $this.data('phantascope', data);
             renderCurrentFrame($this);
             nextFrame($this);
         }
 
         //console.log("data.currentPoint", data.currentPoint);
 
-        $this.data('phantascope', data);
+
     };
 
 
@@ -106,8 +112,9 @@
 
 
     var nextFrame = function($this) {
-        var data = $this.data('phantascope');
 
+        var data = $this.data('phantascope');
+        //console.log("nextFrame", data.currentPoint);
         data.interval = setTimeout(function() {
             onNextFrame($this);
         }, Math.floor(1000/data.fps));
@@ -125,7 +132,7 @@
             return this.each(function(){
 
                 var $this = $(this),
-                data = $this.data('phantascope')
+                data = $this.data('phantascope');
 
                 // If the plugin hasn't been initialized yet
                 if ( !data ) {
@@ -140,7 +147,7 @@
                             [1,6]
                         ],
                         loop: 1,
-                        autoStart: true,
+                        autoStart: false,
                         resetAtEnd: false,
                         onComplete: null
 
@@ -164,16 +171,26 @@
 
         play: function(options) {
 
+            //console.log("play", options);
+
             var $this = $(this);
             var data = $this.data('phantascope');
-
-            if(options)
-                data = $.extend(data, options);
 
             if(data.interval)
                 clearInterval(data.interval);
 
+            if(options)
+                data = $.extend(data, options);
+
+            if(options && options.animationPoints) {
+                data.currentLoopIndex = 1;
+                data.animationPointIndex = 0;
+                data.currentPoint = data.animationPoints[0];
+            }
+
+
             $this.addClass("animating");
+            renderCurrentFrame($this);
 
             nextFrame($this);
 
