@@ -59,9 +59,10 @@ $(document).ready(function() {
 
     $('body').keydown(function(e) {
 
+        e.preventDefault();
+
         if(e.keyCode != currentKeyDown) {
             currentKeyDown = e.keyCode;
-            console.log(currentKeyDown);
             clearInterval(moveInterval);
             //right arrow
             if(e.keyCode == 39) {
