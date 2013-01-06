@@ -127,3 +127,8 @@ An example of this would be: $('.sprite').spritely("play", {fps: 30, animationPo
     </tr>
 </table>
 
+## Bugs
+
+This project is still in beta so please inform me of any bugs you find here: barneyfoxuk@gmail.com
+
+I hope you enjoy using this plugin!
