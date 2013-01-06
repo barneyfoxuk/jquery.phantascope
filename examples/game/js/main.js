@@ -4,6 +4,7 @@ $(document).ready(function() {
     var $character = $('#character'),
         currentKeyDown = null,
         moveInterval,
+        //each animation object is a set of Phantascope options we parse to the 'play' method
         animations = {
             'stopped': {
                 animationPoints: [

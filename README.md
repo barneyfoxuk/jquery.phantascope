@@ -49,13 +49,13 @@ $(document).ready(function() {
         <td><strong>layout</strong></td>
         <td>Array</td>
         <td>[6]</td>
-        <td>An array containing the number of frames on each row of the sprite.  The default describes a sprite containing one row of six frames.</td>
+        <td>An array containing the number of frames on each row of the sprite.  The default describes a sprite containing one row of six frames.<br/><br/>For example, a sprite sheet consisting of three rows, the first two containing six frames and the last row containing four frames would be described as: [6,6,4]</td>
     </tr>
     <tr>
         <td><strong>animationPoints</strong></td>
         <td>Array</td>
         <td>[<br/>&nbsp;&nbsp;[1,1],<br />&nbsp;&nbsp;[1,6]<br/>]</td>
-        <td>The points through which the animation will play.  Each point is an array, the first value refering to the column, the second to the row.<br/><br/>This default value will play from the first frame to last frame (based upon the default layout of six frames on one row).  You can use as many points as you want, and the animation can play either forward or backwards.<br/><br/>For example. to update the current animation to reverse and play back to the start you would parse these settings: [[1,1], [1,6], [1,1]].</td>
+        <td>The points through which the animation will play.  Each point is an array, the first value refering to the column, the second to the row.<br/><br/>This default value will play from the first frame to last frame (based upon the default layout of six frames on one row).  You can use as many points as you want, and the animation can play either forward or backwards.<br/><br/>For example, to update the current animation to reverse and play back to the start you would parse these settings: [[1,1], [1,6], [1,1]].</td>
     </tr>
     <tr>
         <td><strong>loop</strong></td>
@@ -66,7 +66,7 @@ $(document).ready(function() {
     <tr>
         <td><strong>autoStart</strong></td>
         <td>Boolean</td>
-        <td>true</td>
+        <td>false</td>
         <td>Whether to play the animation upon initialisation.</td>
     </tr>
     <tr>
