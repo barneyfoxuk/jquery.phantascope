@@ -1,5 +1,5 @@
-$(document).ready(function() {
 
+$(document).ready(function() {
 
     var $wrapper = $('#game-example-wrapper'),
         $character = $('#character'),

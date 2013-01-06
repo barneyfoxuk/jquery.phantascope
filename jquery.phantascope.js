@@ -1,3 +1,11 @@
+/*
+ * http://barneyfoxuk.github.com/jquery.phantascope/
+ * jQuery plugin for animating sprite sheets
+ *
+ * Copyright (c) 2012 Barney Fox - http://www.barneyfox.com/
+ * Licensed under the MIT license.
+ */
+
 (function( $ ){
 
     /*
