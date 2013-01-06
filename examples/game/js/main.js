@@ -59,15 +59,12 @@ $(document).ready(function() {
 
     $('body').keydown(function(e) {
 
-        e.preventDefault();
-
         if(e.keyCode != currentKeyDown) {
             currentKeyDown = e.keyCode;
-            clearInterval(moveInterval);
+
             //right arrow
             if(e.keyCode == 39) {
-                //$character.css('left', '+=1');
-                //$character.css('left', $character.css('left')+2);
+                e.preventDefault();
                 $character.removeClass('left');
                 animateCharacter('running');
 
@@ -77,6 +74,7 @@ $(document).ready(function() {
             }
             //left arrow
             if(e.keyCode == 37) {
+                e.preventDefault();
                 $character.addClass('left');
                 animateCharacter('running');
 
@@ -86,6 +84,7 @@ $(document).ready(function() {
             }
             //up arrow
             else if(e.keyCode == 38) {
+                e.preventDefault();
                 animateCharacter('climb');
 
                 moveInterval = setInterval(function() {
@@ -94,6 +93,7 @@ $(document).ready(function() {
             }
              //down arrow
             else if(e.keyCode == 40) {
+                e.preventDefault();
                 animateCharacter('teleport');
             }
         }
