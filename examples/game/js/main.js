@@ -1,7 +1,8 @@
 $(document).ready(function() {
 
 
-    var $character = $('#character'),
+    var $wrapper = $('#game-example-wrapper'),
+        $character = $('#character'),
         currentKeyDown = null,
         moveInterval,
         //each animation object is a set of Phantascope options we parse to the 'play' method
@@ -41,8 +42,8 @@ $(document).ready(function() {
                 ],
                 loop: 1,
                 onComplete: function() {
-                    $character.css('left', Math.floor(Math.random()*300));
-                    $character.css('top', Math.floor(Math.random()*600));
+                    $character.css('left', Math.floor(Math.random()*($wrapper.width()-$character.width())));
+                    $character.css('top', Math.floor(Math.random()*($wrapper.height()-$character.height())));
                     setTimeout(function() {
                         animateCharacter('teleportIn');
                     }, 500);
