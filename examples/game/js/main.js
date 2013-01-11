@@ -4,6 +4,7 @@ $(document).ready(function() {
     var $wrapper = $('#game-example-wrapper'),
         $character = $('#character'),
         currentKeyDown = null,
+        teleporting = false,
         moveInterval,
         //each animation object is a set of Phantascope options we parse to the 'play' method
         animations = {
@@ -19,7 +20,9 @@ $(document).ready(function() {
                     [17,1]
                 ],
                 loop: 1,
-                onComplete: null
+                onComplete: function() {
+                    teleporting = false;
+                }
             },
             'running': {
                 animationPoints: [
@@ -59,7 +62,7 @@ $(document).ready(function() {
 
     $('body').keydown(function(e) {
 
-        if(e.keyCode != currentKeyDown) {
+        if(e.keyCode != currentKeyDown && teleporting !== true) {
             currentKeyDown = e.keyCode;
             clearInterval(moveInterval);
 
@@ -95,6 +98,7 @@ $(document).ready(function() {
              //down arrow
             else if(e.keyCode == 40) {
                 e.preventDefault();
+                teleporting = true;
                 animateCharacter('teleport');
             }
         }
