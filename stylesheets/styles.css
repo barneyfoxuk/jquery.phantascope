@@ -196,6 +196,7 @@ footer {
     margin-bottom: 20px;
     border: 1px solid gray;
     overflow: hidden;
+    background: url(../examples/game/img/arrow_keys.gif) no-repeat bottom right;
 }
 
 /* centered */
