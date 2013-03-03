@@ -61,7 +61,7 @@ $(document).ready(function() {
 
 
     $('body').keydown(function(e) {
-
+        console.log(teleporting);
         if(e.keyCode != currentKeyDown && teleporting !== true) {
             currentKeyDown = e.keyCode;
             clearInterval(moveInterval);
@@ -97,6 +97,7 @@ $(document).ready(function() {
             }
              //down arrow
             else if(e.keyCode == 40) {
+                console.log('down arrow');
                 e.preventDefault();
                 teleporting = true;
                 animateCharacter('teleport');
@@ -107,7 +108,7 @@ $(document).ready(function() {
     $('body').keyup(function(e) {
         currentKeyDown = null;
 
-        if(e.keyCode == 39 || e.keyCode == 38 || e.keyCode == 37) {
+        if(e.keyCode == 39 || e.keyCode == 38 || e.keyCode == 37 && teleporting !== true) {
             clearInterval(moveInterval);
             animateCharacter('stopped');
         }
